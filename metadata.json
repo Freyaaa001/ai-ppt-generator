@@ -1,0 +1,5 @@
+{
+  "name": "智能PPT工作台 (AI PPT Master)",
+  "description": "基于 Gemini 3 Pro 与 Nano Banana Pro 的专业级中文 PPT 生成工作台。支持长文档分析、智能分页、多模态配图及 PDF 导出。",
+  "requestFramePermissions": []
+}
