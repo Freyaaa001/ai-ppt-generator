@@ -150,11 +150,11 @@ AI PPT Master 是一款**类似 Google NotebookLM PPT 生成器**的智能演示
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/Freyaaa001/auto-ppt-tool.git
-cd auto-ppt-tool
+git clone https://github.com/Freyaaa001/ai-ppt-generator.git
+cd ai-ppt-generator
 
 # 2. 安装依赖
-npm install
+npm install --legacy-peer-deps
 
 # 3. 启动开发服务器
 npm run dev
@@ -162,6 +162,8 @@ npm run dev
 # 4. 访问应用
 # 打开浏览器访问 http://localhost:3000
 ```
+
+> **注意**：使用 `--legacy-peer-deps` 参数是为了解决某些依赖版本冲突。如果遇到安装问题，请确保 Node.js 版本为 18+。
 
 #### 生产构建
 
