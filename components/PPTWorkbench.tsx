@@ -590,28 +590,28 @@ const PPTWorkbench: React.FC<PPTWorkbenchProps> = ({ onReset }) => {
 
          // 3. Render Content (Editable Text Boxes)
          if (slideData.type === SlideType.Cover) {
-             // Title Box
-             slide.addText(slideData.title, {
-                 x: 0.5, y: '40%', w: '90%', h: 1.5,
-                 fontSize: 44,
-                 bold: true,
-                 align: 'center',
-                 color: primaryColor,
-                 fontFace: 'Arial'
-             });
-             // Subtitle Box
-             if (slideData.subTitle) {
-                slide.addText(slideData.subTitle, {
-                    x: 1, y: '55%', w: '80%', h: 1,
-                    fontSize: 24,
-                    align: 'center',
-                    color: textLightColor,
-                    fontFace: 'Arial'
-                });
-             }
-             // Decorative shapes (only for non-image background)
              if (slideData.layout !== SlideLayout.AiBackground) {
-                slide.addShape(pptx.ShapeType.rect, { x:0, y:0, w:'100%', h:0.2, fill: { color: primaryColor } });
+                 // Title Box
+                 slide.addText(slideData.title, {
+                     x: 0.5, y: '40%', w: '90%', h: 1.5,
+                     fontSize: 44,
+                     bold: true,
+                     align: 'center',
+                     color: primaryColor,
+                     fontFace: 'Arial'
+                 });
+                 // Subtitle Box
+                 if (slideData.subTitle) {
+                    slide.addText(slideData.subTitle, {
+                        x: 1, y: '55%', w: '80%', h: 1,
+                        fontSize: 24,
+                        align: 'center',
+                        color: textLightColor,
+                        fontFace: 'Arial'
+                    });
+                 }
+                 // Decorative shapes (only for non-image background)
+                 slide.addShape(pptx.ShapeType.rect, { x:0, y:0, w:'100%', h:0.2, fill: { color: primaryColor } });
              }
 
          } else if (slideData.type === SlideType.Section) {
@@ -622,35 +622,28 @@ const PPTWorkbench: React.FC<PPTWorkbenchProps> = ({ onReset }) => {
                     x: 1, y: '40%', w: '80%', h: 2,
                     fontSize: 36, bold: true, align: 'center', color: 'FFFFFF'
                  });
-             } else {
-                 // On image background, use white text with shadow for readability
-                 slide.addText(slideData.title, {
-                    x: 1, y: '40%', w: '80%', h: 2,
-                    fontSize: 36, bold: true, align: 'center', color: 'FFFFFF',
-                    shadow: { type: 'outer', blur: 10, color: '000000', opacity: 0.5 }
-                 });
-             }
-             
-             if (slideData.contentPoints.length > 0) {
-                 slide.addText(slideData.contentPoints[0], {
-                     x: 1, y: '60%', w: '80%', h: 1,
-                     fontSize: 18, italic: true, align: 'center', color: 'DDDDDD'
-                 });
+                 
+                 if (slideData.contentPoints.length > 0) {
+                     slide.addText(slideData.contentPoints[0], {
+                         x: 1, y: '60%', w: '80%', h: 1,
+                         fontSize: 18, italic: true, align: 'center', color: 'DDDDDD'
+                     });
+                 }
              }
 
          } else if (slideData.type === SlideType.End) {
              // End Slide
              if (slideData.layout !== SlideLayout.AiBackground) {
-                slide.background = { color: primaryColor };
+                 slide.background = { color: primaryColor };
+                 slide.addText(slideData.title || "感谢观看", {
+                     x: 0, y: '45%', w: '100%', h: 1,
+                     fontSize: 40,
+                     bold: true,
+                     align: 'center',
+                     color: 'FFFFFF',
+                     shadow: { type: 'outer', blur: 5, color: '000000', opacity: 0.3 }
+                 });
              }
-             slide.addText(slideData.title || "感谢观看", {
-                 x: 0, y: '45%', w: '100%', h: 1,
-                 fontSize: 40,
-                 bold: true,
-                 align: 'center',
-                 color: 'FFFFFF',
-                 shadow: { type: 'outer', blur: 5, color: '000000', opacity: 0.3 }
-             });
 
          } else {
              // === CONTENT SLIDES ===
@@ -661,39 +654,8 @@ const PPTWorkbench: React.FC<PPTWorkbenchProps> = ({ onReset }) => {
              const isAiBg = slideData.layout === SlideLayout.AiBackground && !!slideData.imageUrl;
 
              if (isAiBg) {
-                // For AI Backgrounds, we add a subtle semi-transparent white container 
-                // to mimic the "Glassmorphism" look in the preview, but kept editable.
-                
-                // Container Box (Editable Shape)
-                slide.addShape(pptx.ShapeType.rect, { 
-                    x: 0.5, y: 0.5, w: 9, h: 4.5, 
-                    fill: { color:'FFFFFF', transparency: 15 }, // 15% opacity white
-                    line: { color: 'FFFFFF', transparency: 50, width: 1 } // subtle border
-                }); 
-                
-                // Title Text (Editable)
-                slide.addText(slideData.title, {
-                    x: 1, y: 1, w: 8, h: 0.8,
-                    fontSize: 28, bold: true, color: primaryColor, fontFace: 'Arial'
-                });
-                
-                // Content Points (Editable Bullets)
-                // Adaptive font size logic based on content length
-                const totalTextLength = slideData.contentPoints.join('').length;
-                const dynamicFontSize = totalTextLength > 150 ? 14 : totalTextLength > 100 ? 16 : 18;
-
-                const bullets = slideData.contentPoints.map(p => ({ text: p, options: { breakLine: true } }));
-                slide.addText(bullets, {
-                    x: 1, y: 1.8, w: 8, h: 3.0,
-                    fontSize: dynamicFontSize, 
-                    color: textColor, 
-                    bullet: { type: 'bullet', code: '2022' }, 
-                    paraSpaceBefore: 10, 
-                    lineSpacing: 28, 
-                    fontFace: 'Arial',
-                    valign: 'top'
-                });
-
+                // For AI Backgrounds, we disable editable text overlays
+                // to maintain the picture-only appearance desired by the user.
              } else {
                  // Standard Layouts (Image Left/Right/Center)
                  // This logic remains mostly the same, standard PPT generation

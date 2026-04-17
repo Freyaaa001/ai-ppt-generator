@@ -97,51 +97,8 @@ const SlideRenderer: React.FC<SlideRendererProps> = ({
                     alt="AI Generated Background" 
                     className="absolute inset-0 w-full h-full object-cover z-0" 
                 />
-                
-                {/* Text Overlay Layer - Glassmorphism Card */}
-                <div className="absolute inset-0 z-10 p-12 flex flex-col justify-center items-center">
-                    <div 
-                        className="bg-white/90 backdrop-blur-md rounded-xl shadow-2xl border border-white/60 w-full max-w-4xl mx-auto flex flex-col justify-center transition-all duration-300"
-                        style={{ 
-                            padding: containerPadding,
-                            minHeight: '40%'
-                        }}
-                    >
-                         <h1 
-                            className="font-bold leading-tight" 
-                            style={{ 
-                                color: colors.primary,
-                                fontSize: titleSize,
-                                marginBottom: spaceY
-                            }}
-                         >
-                            {slide.title}
-                         </h1>
-                         <div className="flex-1 flex flex-col justify-center" style={{ gap: pointGap }}>
-                            {slide.contentPoints.map((point, idx) => (
-                                <div key={idx} className="flex items-start">
-                                    <span 
-                                        className="mr-3 rounded-full flex-shrink-0 mt-[0.4em]" 
-                                        style={{ 
-                                            backgroundColor: colors.accent,
-                                            width: '0.4em',
-                                            height: '0.4em'
-                                        }}
-                                    ></span>
-                                    <p 
-                                        className="font-medium leading-snug" 
-                                        style={{ 
-                                            color: colors.text,
-                                            fontSize: bodySize
-                                        }}
-                                    >
-                                        {point}
-                                    </p>
-                                </div>
-                            ))}
-                         </div>
-                    </div>
-                </div>
+
+
 
                 <div className="absolute bottom-2 right-2 text-white/40 text-[8px] bg-black/30 px-2 py-0.5 rounded z-20">
                     Background by Gemini 3 Pro
