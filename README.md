@@ -37,7 +37,7 @@ AI PPT Master 是一款**类似 Google NotebookLM PPT 生成器**的智能演示
 | 本地部署 | ❌ 云端服务 | ✅ 可本地运行 |
 | 数据隐私 | ❌ 上传至 Google | ✅ 仅本地存储 API Key |
 
-**🔗 在线体验**：[AI Studio App](https://ai.studio/apps/drive/1IV3cEZQ12qAZ7jN3Lsem-Kdg6nFYwh30)
+**🔗 在线体验**：[点击立即访问 (GitHub Pages)](https://Freyaaa001.github.io/ai-ppt-generator/)
 
 ---
 
@@ -403,7 +403,7 @@ AI PPT Master is an intelligent presentation generator **similar to Google Noteb
 | Local Deployment | ❌ Cloud only | ✅ Self-hostable |
 | Privacy | ❌ Data uploaded | ✅ Local API key storage |
 
-**🔗 Try it online**: [AI Studio App](https://ai.studio/apps/drive/1IV3cEZQ12qAZ7jN3Lsem-Kdg6nFYwh30)
+**🔗 Try it online**: [Click here to visit (GitHub Pages)](https://Freyaaa001.github.io/ai-ppt-generator/)
 
 ---
 
